@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import ListGroup from "react-bootstrap/ListGroup";
-import axios from 'axios';
+
 
 // Class component for managing local state and CRUD operations
 class LocalTodoApp extends Component {
@@ -140,38 +140,13 @@ class LocalTodoApp extends Component {
 }
 
 // Functional component for fetching data from API and displaying it
-function ApiTodoApp() {
-  const [todos, setTodos] = useState([]);
 
-  useEffect(() => {
-    axios.get('http://localhost:5000/api/todos')
-      .then(response => {
-        setTodos(response.data);
-      })
-      .catch(error => {
-        console.error('There was an error fetching the data!', error);
-      });
-  }, []);
-
-  return (
-    <div className="App">
-      <h1>API Fetched To-Do List</h1>
-      <ul>
-        {todos.map(todo => (
-          <li key={todo.id}>
-            {todo.task} {todo.completed ? '(Completed)' : ''}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
 
 function App() {
   return (
     <>
       <LocalTodoApp />
-      <ApiTodoApp />
+      
     </>
   );
 }
